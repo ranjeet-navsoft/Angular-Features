@@ -1,4 +1,4 @@
-import { isPlatformBrowser, NgClass, NgFor, NgIf } from '@angular/common';
+import { isPlatformBrowser, NgClass } from '@angular/common';
 import { Component, EventEmitter, Inject, Input, Output, PLATFORM_ID } from '@angular/core';
 interface MenuItem {
   icon: string;
@@ -16,7 +16,7 @@ interface MenuItem {
   standalone: true
 })
 export class SidebarComponent {
-  isBrowser: boolean = false;
+  isBrowser: boolean;
   constructor(@Inject(PLATFORM_ID) private platformId: object){
     this.isBrowser = isPlatformBrowser(platformId);
   }
