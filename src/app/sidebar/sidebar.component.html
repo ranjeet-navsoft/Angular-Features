@@ -31,7 +31,7 @@
             <ul class="sidebar-submenu" >
               @for (child of item.children; track $index) {
                 <li>
-                  <a href="#" class="sidebar-item sidebar-subitem">
+                  <a [routerLink]="child.link" class="sidebar-item sidebar-subitem">
                     <i [class]="child.icon"></i>
                     <span class="sidebar-item-text">{{ child.label }}</span>
                   </a>

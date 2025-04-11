@@ -1,0 +1,30 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" required>
+      <mat-error *ngIf="myForm.get('name')?.hasError('required')">
+        Name is required.
+      </mat-error>
+      <mat-error *ngIf="myForm.get('name')?.hasError('minlength')">
+        Name must be at least 3 characters long.
+      </mat-error>
+    </mat-form-field>
+  
+  <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" required>
+      <mat-error *ngIf="myForm.get('email')?.hasError('required')">
+        Email is required.
+      </mat-error>
+      <mat-error *ngIf="myForm.get('email')?.hasError('email')">
+        Please enter a valid email address.
+      </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" [disabled]="myForm.invalid">Submit</button>
+  </form>
+  
+  <div *ngIf="formStatus()">
+    <p [ngClass]="{'success': formStatus() === 'Form submitted successfully!', 'error': formStatus() === 'Form contains errors.'}">
+      {{ formStatus() }}
+    </p>
+  </div>

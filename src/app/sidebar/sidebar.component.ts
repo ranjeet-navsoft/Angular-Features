@@ -1,5 +1,6 @@
 import { isPlatformBrowser, NgClass } from '@angular/common';
 import { Component, EventEmitter, Inject, Input, Output, PLATFORM_ID } from '@angular/core';
+import { RouterLink } from '@angular/router';
 interface MenuItem {
   icon: string;
   label: string;
@@ -10,7 +11,7 @@ interface MenuItem {
 
 @Component({
   selector: 'app-sidebar',
-  imports: [NgClass],
+  imports: [NgClass, RouterLink],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
   standalone: true
@@ -69,6 +70,16 @@ export class SidebarComponent {
       children: [
         { icon: 'fas fa-book', label: 'Documentation' ,link: '' },
         { icon: 'fas fa-code', label: 'Code Snippets' ,link: '' },
+      ]
+    },
+    {
+      icon: 'fas fa-certificate',
+      label: 'Basic Angular',
+      isOpen: false,
+      link: '' ,
+      children: [
+        { icon: 'fas fa-book', label: 'Reactive Forms' ,link: 'reactive-forms' },
+        { icon: 'fas fa-code', label: 'Template Forms' ,link: 'template-forms' },
       ]
     }
   ];
