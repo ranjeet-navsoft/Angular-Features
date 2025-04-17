@@ -4,6 +4,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
+    "baseUrl": "./",
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -16,12 +17,29 @@
     "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
-    "module": "ES2022"
+    "module": "ES2022",
+    "sourceMap": true,
+    "noEmitOnError": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "@app/*": ["src/app/*"],
+      "@assets/*": ["src/assets/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.html",
+    "src/**/*.css"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "e2e"
+  ]
 }

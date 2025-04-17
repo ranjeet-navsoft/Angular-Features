@@ -1,12 +1,30 @@
 import { Routes } from '@angular/router';
+import { canActivateGuard } from './can-activate.guard';
+import { canLoadGuard } from './can-load.guard';
+import { LoginComponent } from './login/login.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 export const routes: Routes = [
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'admin',
+    component: SidebarComponent,
+    canActivate: [canActivateGuard],
+    children: [
+      { path: 'dashboard', component: DashboardComponent },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    ]
+  },
+  { path: '', redirectTo: '/admin', pathMatch: 'full' },
+  { path: '**', redirectTo: '/admin' },
   {
     path: 'reactive-forms',
     loadComponent: () =>
       import('./reactive-forms/reactive-forms.component').then(
         (m) => m.ReactiveFormsComponent
       ),
+      canLoad: [canLoadGuard]
   },
   {
     path: 'template-forms',
@@ -14,15 +32,9 @@ export const routes: Routes = [
       import('./template-driven-form/template-driven-form.component').then(
         (m) => m.TemplateDrivenFormComponent
       ),
+      canLoad: [canLoadGuard]
   },
-  {
-    path: '',
-    loadComponent: () =>
-      import('./dashboard/dashboard.component').then(
-        (m) => m.DashboardComponent
-      ),
-  },
-  
+
 //   {
 //     path: '',
 //     component: AppComponent
